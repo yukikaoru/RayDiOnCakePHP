@@ -16,5 +16,10 @@
     "config": {
         "vendor-dir": "vendors"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "RayDiOnCake": "app/Lib"
+        }
+    }
 }
