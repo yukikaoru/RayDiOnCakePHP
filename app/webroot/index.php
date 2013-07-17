@@ -19,6 +19,7 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+use Doctrine\Common\Cache\ApcCache;
 
 /**
  * Use the DS to separate the directories in other defines
@@ -102,6 +103,9 @@ if (!empty($failed)) {
 }
 
 $Dispatcher = new RayDiOnCake\Routing\Dispatcher();
+$cache = new ApcCache();
+$cache->setNamespace('ray/di');
+$Dispatcher->setInjectorCache($cache);
 $Dispatcher->dispatch(
     new CakeRequest(),
     new CakeResponse()

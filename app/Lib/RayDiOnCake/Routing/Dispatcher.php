@@ -1,7 +1,7 @@
 <?php
 namespace RayDiOnCake\Routing;
 
-use Doctrine\Common\Cache\ApcCache;
+use Doctrine\Common\Cache\Cache;
 use Ray\Di\Injector;
 
 \App::uses('ClassRegistry', 'Utility');
@@ -11,6 +11,9 @@ class Dispatcher extends \Dispatcher
 {
     /** @var Injector */
     public $injector;
+
+    /** @var Cache */
+    public $injectorCache;
 
     /**
      * @param bool $base
@@ -39,13 +42,16 @@ class Dispatcher extends \Dispatcher
      */
     private function createInjector()
     {
-        $cache = new ApcCache();
-        $cache->setNamespace('ray/di');
         return Injector::create(
             [
                 // listing to install modules
             ],
-            $cache
+            $this->injectorCache
         );
+    }
+
+    public function setInjectorCache(Cache $cache)
+    {
+        $this->injectorCache = $cache;
     }
 }
