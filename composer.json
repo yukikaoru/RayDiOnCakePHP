@@ -1,6 +1,10 @@
 {
     "name": "vectorxenon/ray-di-on-cake-php",
+    "repositories": [
+        {"type": "pear", "url": "http://pear.cakephp.org"}
+    ],
     "require": {
+        "pear-cakephp/cakephp": "2.4.*",
         "ray/di": "~1.0"
     },
     "require-dev": {
