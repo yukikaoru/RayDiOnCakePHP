@@ -31,6 +31,9 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 $loader = require __DIR__ . '/../../vendors/autoload.php';
 AnnotationRegistry::registerLoader([$loader, "loadClass"]);
 
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
+
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
