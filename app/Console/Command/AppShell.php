@@ -20,6 +20,18 @@ App::uses('Shell', 'Console');
  *
  * @package       app.Console.Command
  */
-class AppShell extends Shell {
+class AppShell extends Shell
+{
+    use InjectorConfiguration;
+
+    /** @var \Ray\Di\Injector */
+    protected $injector;
+
+    public function __construct($stdout = null, $stderr = null, $stdin = null)
+    {
+        $this->injector = $this->createInjector();
+
+        parent::__construct($stdout, $stderr, $stdin);
+    }
 
 }

@@ -1,5 +1,4 @@
 <?php
-use Ray\Di\Injector;
 /**
  * Application level Controller
  *
@@ -12,6 +11,8 @@ use Ray\Di\Injector;
  * @package       app.Controller
  * @since         CakePHP(tm) v 0.2.9
  */
+
+use RayDiOnCake\Di\InjectorConfiguration;
 
 App::uses('Controller', 'Controller');
 
@@ -26,11 +27,16 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller
 {
-    /** @var Injector */
-    private $injector;
+    use InjectorConfiguration;
 
-    public function setInjector(Injector $injector)
+    /** @var \Ray\Di\Injector */
+    protected $injector;
+
+    public function __construct($request = null, $response = null)
     {
-        $this->injector = $injector;
+        $this->injector = $this->createInjector();
+
+        parent::__construct($request, $response);
     }
+
 }
